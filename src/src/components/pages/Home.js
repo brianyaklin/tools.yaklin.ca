@@ -11,10 +11,11 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
-import SearchIcon from "@material-ui/icons/Search";
 import BuildIcon from "@material-ui/icons/Build";
 
-import TechImage from "../../assets/TechImage.jpg";
+import CalculatorImage from "../../assets/charles-deluvio-GlavtG-umzE-unsplash.jpg";
+
+import * as ROUTES from "../../shared/constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   cardRoot: {
@@ -39,17 +40,14 @@ export default function Home() {
   const toolCards = [
     {
       title: "Subnet Calculator",
-      ariaLabel: "mac search tool",
-      description: "A subnet calculator for IPv4 addresses.",
+      ariaLabel: "Subnet calculator tool",
+      description: "A subnet calculator for IPv4 addresses and networks.",
       actionIcon: <BuildIcon />,
-      to: "/subnet-calculator",
-    },
-    {
-      title: "MAC Vendor Search",
-      ariaLabel: "subnet tool",
-      description: "MAC address vendor search.",
-      actionIcon: <SearchIcon />,
-      to: "/mac-vendor-search",
+      to: ROUTES.SUBNETCALC,
+      media: {
+        image: CalculatorImage,
+        title: "Subnet Calculator",
+      },
     },
   ];
 
@@ -82,8 +80,8 @@ export default function Home() {
               />
               <CardMedia
                 className={classes.media}
-                image={TechImage}
-                title="tech image"
+                image={card.media.image}
+                title={card.media.title}
               />
               <CardContent>
                 <Typography variant="body2" component="p">

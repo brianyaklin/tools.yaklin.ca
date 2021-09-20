@@ -15,7 +15,7 @@ import FileCopyIcon from "@material-ui/icons/FileCopy";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
-import getSubnetInfo from "../../utils/ipUtil";
+import getSubnetInfo from "../../shared/utils/ipUtil";
 
 const useStyles = makeStyles((theme) => ({
   textField: {

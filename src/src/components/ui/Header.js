@@ -15,6 +15,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import GitHubIcon from "@material-ui/icons/GitHub";
 
+import * as ROUTES from "../../shared/constants/routes";
+
 function ElevationScroll(props) {
   const { children } = props;
 
@@ -68,12 +70,11 @@ export default function Header() {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const drawerGeneralLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
+    { name: "Home", path: ROUTES.INDEX },
+    { name: "About", path: ROUTES.ABOUT },
   ];
   const drawerToolLinks = [
-    { name: "Subnet Calculator", path: "/subnet-calculator" },
-    { name: "MAC Vendor Search", path: "/mac-vendor-search" },
+    { name: "Subnet Calculator", path: ROUTES.SUBNETCALC },
   ];
 
   return (
@@ -99,19 +100,26 @@ export default function Header() {
                 className={classes.homeSiteText}
                 rel="noreferrer noopener nofollow"
                 target="_blank"
+                aria-label="blog"
               >
                 Yaklin.ca
               </a>
             </Typography>
-            <IconButton color="inherit" component={Link} to={"/"}>
+            <IconButton
+              color="inherit"
+              component={Link}
+              to={"/"}
+              aria-label="homepage"
+            >
               <HomeIcon />
             </IconButton>
             <IconButton
               color="inherit"
               component={"a"}
-              href="https://github.com/brianyaklin"
+              href="https://github.com/brianyaklin/tools.yaklin.ca"
               rel="noopener noreferrer nofollow"
               target="_blank"
+              aria-label="github"
             >
               <GitHubIcon />
             </IconButton>
