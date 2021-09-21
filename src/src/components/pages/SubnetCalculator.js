@@ -67,9 +67,6 @@ export default function SubnetCalculator() {
       let matchMaskDottedResult = searchValue.match(
         /(((255\.){3}(255|254|252|248|240|224|192|128+))|((255\.){2}(255|254|252|248|240|224|192|128|0+)\.0)|((255\.)(255|254|252|248|240|224|192|128|0+)(\.0+){2})|((255|254|252|248|240|224|192|128|0+)(\.0+){3}))/g
       );
-      if (matchMaskDottedResult == null) {
-        matchMaskDottedResult = searchValue.match(/255\.255\.255\.255/);
-      }
 
       if (matchMaskLengthResult || matchMaskDottedResult) {
         if (matchMaskLengthResult) {
@@ -96,7 +93,7 @@ export default function SubnetCalculator() {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchValue, mask, ip, subnetInfo]);
+  }, [searchValue, mask, ip]);
 
   useEffect(() => {
     let resultText = "";
