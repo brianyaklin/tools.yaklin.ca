@@ -62,7 +62,7 @@ export default function SubnetCalculator() {
 
       // Identify dotted decimal mask or prefix length
       let matchMaskLengthResult = searchValue.match(
-        /\/2[0-9]|\/3[0-2]|\/[0-9]/
+        /\/1[0-9]|\/2[0-9]|\/3[0-2]|\/[0-9]/
       );
       let matchMaskDottedResult = searchValue.match(
         /(((255\.){3}(255|254|252|248|240|224|192|128+))|((255\.){2}(255|254|252|248|240|224|192|128|0+)\.0)|((255\.)(255|254|252|248|240|224|192|128|0+)(\.0+){2})|((255|254|252|248|240|224|192|128|0+)(\.0+){3}))/g
