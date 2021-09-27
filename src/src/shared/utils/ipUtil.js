@@ -112,17 +112,44 @@ function getClass(ip) {
 function isPublic(ip) {
   let ipDecimal = ipStringToDecimal(ip);
 
-  if (ipDecimal >= 167772160 && ipDecimal < 184549375) {
-    // 10.0.0.0 to 10.255.255.255
+  if (ipDecimal >= 0 && ipDecimal <= 255) {
+    // 0.0.0.0/8 RFC1122
     return false;
-  } else if (ipDecimal >= 2886729728 && ipDecimal < 2886795263) {
-    // 172.16.0.0 to 172.16.255.255
+  } else if (ipDecimal >= 167772160 && ipDecimal < 184549375) {
+    // 10.0.0.0/8 RFC1918
     return false;
-  } else if (ipDecimal >= 3232235520 && ipDecimal < 3232301055) {
-    // 192.168.0.0 to 192.168.255.255
+  } else if (ipDecimal >= 1681915904 && ipDecimal <= 1686110207) {
+    // 100.64.0.0/10 RFC6598
+    return false;
+  } else if (ipDecimal >= 2130706432 && ipDecimal <= 2147483647) {
+    // 127.0.0.0/8 RFC1122
     return false;
   } else if (ipDecimal >= 2851995648 && ipDecimal <= 2852061183) {
-    // 169.254.0.0 to 169.254.255.255
+    // 169.254.0.0/16 RFC3927
+    return false;
+  } else if (ipDecimal >= 2886729728 && ipDecimal < 2886795263) {
+    // 172.16.0.0/12 RFC1918
+    return false;
+  } else if (ipDecimal >= 3232235520 && ipDecimal < 3232301055) {
+    // 192.168.0.0/16 RFC1918
+    return false;
+  } else if (ipDecimal >= 3221225472 && ipDecimal <= 3221225727) {
+    // 192.0.0.0/24 RFC6890
+    return false;
+  } else if (ipDecimal >= 3221225984 && ipDecimal <= 3221226239) {
+    // 192.0.2.0/24  RFC5737
+    return false;
+  } else if (ipDecimal >= 3323068416 && ipDecimal <= 3326083071) {
+    // 198.18.0.0/15 RFC2544
+    return false;
+  } else if (ipDecimal >= 3325256704 && ipDecimal <= 3325256959) {
+    // 198.51.100.0/24 RFC5737
+    return false;
+  } else if (ipDecimal >= 3405803776 && ipDecimal <= 3405804031) {
+    // 203.0.113.0/24 RFC5737
+    return false;
+  } else if (ipDecimal >= 4026531840 && ipDecimal <= 4294967295) {
+    // 240.0.0.0/4 RFC1112
     return false;
   } else {
     return true;
