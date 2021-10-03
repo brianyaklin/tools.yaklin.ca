@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -11,11 +13,13 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Tooltip from "@material-ui/core/ToolTip";
 import IconButton from "@material-ui/core/IconButton";
+import LinkIcon from "@material-ui/icons/Link";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
 import getSubnetInfo from "../../shared/utils/ipUtil";
+import * as ROUTES from "../../shared/constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -38,15 +42,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 export default function SubnetCalculator() {
   const classes = useStyles();
   const [searchValue, setSearchValue] = useState("");
   const [ip, setIp] = useState(null);
   const [mask, setMask] = useState(null);
   const [subnetInfo, setSubnetInfo] = useState(null);
-  const [copyOpen, setCopyOpen] = useState(false);
+  const [copyLinkOpen, setCopyLinkOpen] = useState(false);
+  const [copyResultsOpen, setCopyResultsOpen] = useState(false);
   const [hiddenCopyArea, setHiddenCopyArea] = useState("");
   const resultDataRef = useRef();
+  let query = useQuery();
+  const history = createBrowserHistory();
+
+  useEffect(() => {
+    let queryIp = query.get("ip");
+    let queryPrefix = query.get("prefix");
+    if (queryIp && queryPrefix) {
+      setSearchValue(queryIp + "/" + queryPrefix);
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -85,9 +104,16 @@ export default function SubnetCalculator() {
         } else if (matchMaskDottedResult) {
           setSubnetInfo(getSubnetInfo(ip, mask));
         }
+        history.push({
+          pathname: ROUTES.SUBNETCALC,
+          search: `?ip=${ip}&prefix=${mask}`,
+        });
       } else {
         // Clear subnetInfo variable if a IP and mask aren't found
         setSubnetInfo(null);
+        history.push({
+          pathname: ROUTES.SUBNETCALC,
+        });
       }
     }, 500);
 
@@ -118,10 +144,10 @@ Number of Hosts: ${subnetInfo.hostQuantity}
     }
   }, [subnetInfo, searchValue]);
 
-  const handleCopyResultsClick = () => {
-    navigator.clipboard.writeText(resultDataRef.current.value).then(
+  const handleCopyLinkClick = () => {
+    navigator.clipboard.writeText(window.location.href).then(
       () => {
-        setCopyOpen(true);
+        setCopyLinkOpen(true);
       },
       (error) => {
         console.log("copy to clipboard failed");
@@ -129,12 +155,29 @@ Number of Hosts: ${subnetInfo.hostQuantity}
     );
   };
 
+  const handleCopyResultsClick = () => {
+    navigator.clipboard.writeText(resultDataRef.current.value).then(
+      () => {
+        setCopyResultsOpen(true);
+      },
+      (error) => {
+        console.log("copy to clipboard failed");
+      }
+    );
+  };
+
+  const handleCopyLinkClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setCopyLinkOpen(false);
+  };
+
   const handleCopyResultsClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
-    setCopyOpen(false);
+    setCopyResultsOpen(false);
   };
 
   return (
@@ -168,6 +211,11 @@ Number of Hosts: ${subnetInfo.hostQuantity}
               align="right"
               className={classes.iconContainer}
             >
+              <Tooltip title="Copy Link">
+                <IconButton onClick={handleCopyLinkClick}>
+                  <LinkIcon aria-label="copy link details" />
+                </IconButton>
+              </Tooltip>
               <Tooltip title="Copy Results">
                 <IconButton onClick={handleCopyResultsClick}>
                   <FileCopyIcon aria-label="copy result details" />
@@ -252,7 +300,16 @@ Number of Hosts: ${subnetInfo.hostQuantity}
             </Table>
           </TableContainer>
           <Snackbar
-            open={copyOpen}
+            open={copyLinkOpen}
+            autoHideDuration={3000}
+            onClose={handleCopyLinkClose}
+          >
+            <MuiAlert onClose={handleCopyLinkClose} severity="success">
+              Link copied to clipboard!
+            </MuiAlert>
+          </Snackbar>
+          <Snackbar
+            open={copyResultsOpen}
             autoHideDuration={3000}
             onClose={handleCopyResultsClose}
           >
