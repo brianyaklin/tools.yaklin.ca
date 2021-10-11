@@ -196,7 +196,7 @@ Number of Hosts: ${subnetInfo.hostQuantity}
             label="IP Address and Mask"
             variant="outlined"
             size="small"
-            helperText="Enter the IP address and network mask as a prefix length (eg. /24) or in dotted decimal notation (eg. 255.255.255.0). If only an IP address is provided, mask length with be set to 32."
+            helperText="Enter the IP address and network mask as a prefix length (eg. /24) or in dotted decimal notation (eg. 255.255.255.0). If only an IP address is provided, mask length will be set to 32."
             className={classes.textField}
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
