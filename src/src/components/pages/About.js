@@ -60,6 +60,18 @@ export default function Home() {
               for amazing free images!
             </Typography>
           </li>
+          <li>
+            <Typography variant="body1">
+              <a
+                href="https://stat.ripe.net/docs/data_api"
+                rel="noreferrer noopener nofollow"
+                target="_blank"
+              >
+                RIPEstat
+              </a>{" "}
+              for access to their public data API's
+            </Typography>
+          </li>
         </ul>
       </Container>
     </Container>

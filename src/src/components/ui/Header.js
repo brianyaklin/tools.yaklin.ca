@@ -75,6 +75,7 @@ export default function Header() {
   ];
   const drawerToolLinks = [
     { name: "Subnet Calculator", path: ROUTES.SUBNETCALC },
+    { name: "BGP ASN Lookup", path: ROUTES.ASLOOKUP },
   ];
 
   return (

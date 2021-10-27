@@ -12,8 +12,10 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import BuildIcon from "@material-ui/icons/Build";
+import SearchIcon from "@material-ui/icons/Search";
 
 import CalculatorImage from "../../assets/charles-deluvio-GlavtG-umzE-unsplash.jpg";
+import MapImage from "../../assets/delfi-de-la-rua-vfzfavUZmfc-unsplash.jpg";
 
 import * as ROUTES from "../../shared/constants/routes";
 
@@ -47,6 +49,17 @@ export default function Home() {
       media: {
         image: CalculatorImage,
         title: "Subnet Calculator",
+      },
+    },
+    {
+      title: "BGP ASN Lookup",
+      ariaLabel: "BGP ASN lookup tool",
+      description: "Search for details on a BGP ASN.",
+      actionIcon: <SearchIcon />,
+      to: ROUTES.ASLOOKUP,
+      media: {
+        image: MapImage,
+        title: "BGP ASN Lookup",
       },
     },
   ];

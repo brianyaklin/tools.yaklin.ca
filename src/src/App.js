@@ -14,6 +14,7 @@ import Page from "./components/pages/Page";
 import HomePage from "./components/pages/Home";
 import AboutPage from "./components/pages/About";
 import SubnetCalculator from "./components/pages/SubnetCalculator";
+import AsLookup from "./components/pages/AsLookup";
 
 const history = createBrowserHistory();
 
@@ -57,6 +58,15 @@ function App() {
               component={() => (
                 <Page title="Subnet Calculator">
                   <SubnetCalculator />
+                </Page>
+              )}
+            />
+            <Route
+              exact
+              path={ROUTES.ASLOOKUP}
+              component={() => (
+                <Page title="AS Lookup">
+                  <AsLookup />
                 </Page>
               )}
             />
