@@ -65,7 +65,7 @@ function App() {
               exact
               path={ROUTES.ASLOOKUP}
               component={() => (
-                <Page title="AS Lookup">
+                <Page title="BGP ASN Lookup">
                   <AsLookup />
                 </Page>
               )}
