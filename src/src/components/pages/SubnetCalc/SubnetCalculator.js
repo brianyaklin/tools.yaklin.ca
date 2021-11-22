@@ -18,8 +18,8 @@ import FileCopyIcon from "@material-ui/icons/FileCopy";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
-import getSubnetInfo from "../../shared/utils/ipUtil";
-import * as ROUTES from "../../shared/constants/routes";
+import getSubnetInfo from "../../../shared/utils/ipUtil";
+import * as ROUTES from "../../../shared/constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   textField: {

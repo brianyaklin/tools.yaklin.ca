@@ -10,11 +10,11 @@ import Header from "./components/ui/Header";
 import Footer from "./components/ui/Footer";
 
 import * as ROUTES from "./shared/constants/routes";
-import Page from "./components/pages/Page";
-import HomePage from "./components/pages/Home";
-import AboutPage from "./components/pages/About";
-import SubnetCalculator from "./components/pages/SubnetCalculator";
-import AsLookup from "./components/pages/AsLookup";
+import Page from "./components/ui/Page";
+import HomePage from "./components/Pages/Home";
+import AboutPage from "./components/Pages/About";
+import SubnetCalculator from "./components/Pages/SubnetCalc/SubnetCalculator";
+import AsLookup from "./components/Pages/AsLookup/AsLookup";
 
 const history = createBrowserHistory();
 
